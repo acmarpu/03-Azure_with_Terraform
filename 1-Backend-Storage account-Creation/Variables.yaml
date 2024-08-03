@@ -1,0 +1,29 @@
+variables:
+
+- name: resourceGroupName
+  value: "backendstg-rg"
+
+- name: storageAccountName # Must be globally unique
+  value: "backendstgtf76587"
+
+- name: location
+  value: "eastus2"
+
+- name: azureSubscription # Azure service connection name
+  value: "service-connection-dev"
+
+- name: azureTenantId
+  value: ""
+
+- name: agent_pool
+  value: "Azure Pipelines"
+
+- name: azureSPNUser
+  value: ""
+
+- name: azureSPNPassword
+  value: ""
+
+ 
+ 
+  
