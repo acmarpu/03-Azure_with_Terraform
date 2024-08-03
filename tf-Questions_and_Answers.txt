@@ -1,0 +1,107 @@
+**Questions and Answers**
+
+
+👉 Why Terraform is used for?
+- Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently.
+
+👉 What is Infrastructure as Code?
+- Infrastructure as code (IaC) is managing and provisioning of infrastructure through code instead of through manual processes.
+
+👉 What's the difference between Terraform and ansible?
+- Terraform is a Provisioning of an Infrastructure and Ansible is used to automate the configuration management
+
+👉 What is provider in Terraform?
+- Provider is a keyword used to specify the providers (AWS, AZURE, GCP and etc) to provision a resource.
+
+👉 What is terraform registry...?
+- Terraform a registry is a place where information about providers (clouds whose service terraform provides) is present.
+
+👉 What is the role of terraform init command...?
+- After writing code, when we perform the 'terraform init command, it scans our code and finds the provider used in the code and it then automatically installs all the required files from the registry for the provisions specified in the code.
+
+👉 What are providers and resources in terraform...?
+- the services that cloud providers offer like instance, load balancer, security group, etc are known as resources.
+
+👉 what is the difference between imperative and declarative language...?
+- imperative languages are not intelligent in the sense that they just execute the code written and don't bother to remember the state of code and tract it, 
+-whereas declarative languages like HCL remember the state of the infrastructure created through code written in it.
+
+👉How to create variable and define value in Terraform?
+- By using "variable " keyword we can create a variable and add value to it.
+
+👉What is use of var keyword?
+- Dollar symbol is used to access the value of variable.
+
+👉What is use of $ Symbol?
+- Var is used for identification of variable we used.
+
+👉What is string interpolation?
+- In this process for evaluating the string literal and yielding the results from it.
+
+👉What is use of profile keyword?
+- profile keyword is used for provisioning of existing profile created in the cloud.
+
+👉How to retrieve value of a particular key using TF ?
+- We use the syntax as "$(var.variable_keyname) "
+
+👉How to launch hardisk in aws using TF?
+- To create hardisk we create volume followed by creating resource called "aws_ebs_volume" 
+
+👉How to attach external hardisk to an os in aws using TF?
+- "aws_volume_attachment" is used for it.
+
+👉How to destroy entire infrastructure using TF ?
+- Here command terraform destroy is used to destroy entire command.
+
+👉 What is the best way to automate using Terraform?
+- To write the each and every Steps in same sequence which we used to launch the same thing from AWS Web UI or CLI. And then write the code for the same in the code in web_code.tf file by taking help from the terraform.io>registory>aws>documents> in the same sequence step by step.
+
+👉 What is the File Function in Terraform?
+- file reads the contents of a file at the given path and returns them as a string. ... This function can be used only with files that already exist on disk at the beginning of a Terraform run.
+
+👉 What are the two provisioners in Terraform?
+-Remote execution and local execution are two provisioners in terraform
+
+👉 What is Terraform connection used for?
+- Terraform connection is used to create a connection between instance of cloud and remote machine. It supports both ssh and win
+
+👉 What is idempotence nature of terraform?
+- Terraform checks if current state and desired state are same for the programme if not it achieves the desired state this nature of terraform is idempotance.
+
+👉 What is desired state and current state?
+- Desired state is the one our Instance will achieve once our code runs and Current Instance state before running the terraform programme us current state.
+
+👉 What is use of .tfstate file?
+- .tfstate keeps track of any change in the Instance done by terraform apply, .tfstate file is a locally created file where it stores all the information of the service provider. When we run apply/plan command then it fetches all the details of the service provider. If there are any changes noticed in the apply command then they automatically updates in the .tfstate file.
+
+👉 What is use of terrafrom refresh command?
+- It updates all the changes made in the current state to get the desired state. This can be used to detect any drift from the last-known state, and to update the state file. This does not modify infrastructure but does modify the state file.
+
+👉 What is use of depends_on Meta-Argument?
+- It handles hidden resource or module dependencies that Terraform can't automatically infer. This argument is available in module blocks and in all resource blocks, regardless of resource type
+
+👉 What is use of terraform validate command?
+- Validate command validates the configuration files in a directory, referring only to the configuration and not accessing any remote services. It will valid all the data entered in the TF code and will show if it's validated or not.
+
+👉 To create resources on GCP using Terraform, What we have to do first ?
+-To create resource we first have to create a folder inside which we create a terraform file and use terraform init command to download the plugins of the cloud provider which we want to use.
+
+👉 Which service of Google Cloud will help us to create instance ?
+-The Google Cloud Engine help you to create the instances.
+
+👉 How to create access key in "gcloud" ?
+-You have to do the IAM option and there you have to click on the "Click on Add key" and have to select the key in json format
+
+👉 What is boot-disk in G-cloud ?
+-Boot Disk is like the storage file which is required to install and run the hard in any instance. It's just like the EBS in AWS only the naming convention is different.
+
+What is count in terraform?
+What is modules in terraform?
+What is state file? And use of it
+What is data in terraform?
+What is terraform import?
+How can we take reference of one module into another?
+What is provider?
+How can we upgrade terraform provider version?
+Rest questions will depends on your answers
+This is what I generally ask during interviews
