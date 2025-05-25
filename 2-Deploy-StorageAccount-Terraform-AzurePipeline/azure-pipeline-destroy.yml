@@ -64,6 +64,19 @@ stages:
               backendAzureRmContainerName: 'tfstate'
               backendazureRmKey: 'deploy.terraform.tfstate'
               workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline'
+          
+          - task: TerraformTaskV3@3
+            displayName: 'Terraform Plan'
+            inputs:
+              provider: 'azurerm'
+              command: 'plan'
+              environmentServiceNameAzureRM: 'new-2025-ser-con'
+              backendServiceArm: 'new-2025-ser-con'
+              backendAzureRmResourceGroupName: 'backendstg-rg'
+              backendAzureRmStorageAccountName: 'backendstgtf76587'
+              backendAzureRmContainerName: 'tfstate'
+              backendazureRmKey: 'deploy.terraform.tfstate'
+              workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline' 
 
           - task: TerraformTaskV3@3
             displayName: 'Terraform Destroy'
