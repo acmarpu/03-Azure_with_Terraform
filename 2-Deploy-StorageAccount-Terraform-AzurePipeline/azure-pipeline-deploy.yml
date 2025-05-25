@@ -94,3 +94,17 @@ stages:
               workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline'
               # Optional: Set to true for auto-approve
               # args: '-auto-approve'
+
+
+          - task: TerraformTaskV3@3
+            displayName: 'Terraform Destroy'
+            inputs:
+              provider: 'azurerm'
+              command: 'destroy'
+              environmentServiceNameAzureRM: 'new-2025-ser-con'
+              backendServiceArm: 'new-2025-ser-con'
+              backendAzureRmResourceGroupName: 'backendstg-rg'
+              backendAzureRmStorageAccountName: 'backendstgtf76587'
+              backendAzureRmContainerName: 'tfstate'
+              backendazureRmKey: 'deploy.terraform.tfstate'
+              workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline'
