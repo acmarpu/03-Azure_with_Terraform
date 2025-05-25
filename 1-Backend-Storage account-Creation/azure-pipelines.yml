@@ -9,6 +9,7 @@ pool: $(agent_pool)
 
 variables:
   - template: Variables.yaml
+  - group: Secreates
   
 steps:
 - script: |
@@ -24,7 +25,6 @@ steps:
 
 - script: |
     # Log in to Azure
-    # az login --service-principal -u $(azureSPNUser) -p $(azureSPNPassword) --tenant $(azureTenantId)
     az login --service-principal -u $(azureSPNUser) -p $(azureSPNPassword) --tenant $(azureTenantId)
     
     # Create a new resource group
