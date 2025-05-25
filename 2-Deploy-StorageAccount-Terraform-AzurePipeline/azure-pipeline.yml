@@ -56,7 +56,7 @@ stages:
           - task: TerraformInstaller@0
             displayName: 'Install Terraform'
             inputs:
-              terraformVersion: 'latest'
+              terraformVersion: '1.6.6'
               
 
           - task: TerraformTaskV3@3
@@ -70,7 +70,7 @@ stages:
               backendAzureRmStorageAccountName: 'backendstgtf76587'
               backendAzureRmContainerName: 'tfstate'
               backendazureRmKey: 'deploy.terraform.tfstate'
-              workingDirectory: 'terraform' 
+              workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline'
 
           - task: TerraformTaskV3@3
             displayName: 'Terraform Plan'
@@ -83,7 +83,7 @@ stages:
               backendAzureRmStorageAccountName: 'backendstgtf76587'
               backendAzureRmContainerName: 'tfstate'
               backendazureRmKey: 'deploy.terraform.tfstate'
-              workingDirectory: 'terraform'  
+              workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline' 
 
           - task: TerraformTaskV3@3
             displayName: 'Terraform Apply'
@@ -91,6 +91,6 @@ stages:
               provider: 'azurerm'
               command: 'apply'
               environmentServiceNameAzureRM: 'new-2025-ser-con'
-              workingDirectory: 'storage' 
+              workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline'
               # Optional: Set to true for auto-approve
               # args: '-auto-approve'
