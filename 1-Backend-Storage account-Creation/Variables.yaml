@@ -10,19 +10,13 @@ variables:
   value: "eastus2"
 
 - name: azureSubscription # Azure service connection name
-  value: "service-connection-dev"
+  value: "new-2025-ser-con"
 
 - name: azureTenantId
-  value: ""
+  value: "c5a788c6-0c54-4f1e-b154-adc736498adf"
 
 - name: agent_pool
   value: "Azure Pipelines"
-
-- name: azureSPNUser
-  value: ""
-
-- name: azureSPNPassword
-  value: ""
 
  
  
