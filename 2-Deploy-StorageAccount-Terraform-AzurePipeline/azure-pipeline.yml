@@ -14,7 +14,7 @@ stages:
     continueOnError: false
     steps:
     - task: TerraformInstaller@0
-      displayName: install
+      displayName: 'Install Terraform'
       inputs:
         terraformVersion: 'latest'
 
@@ -57,7 +57,7 @@ stages:
             displayName: 'Install Terraform'
             inputs:
               terraformVersion: 'latest'
-              backendServiceArm: 'new-2025-ser-con'
+              
 
           - task: TerraformTaskV3@3
             displayName: 'Terraform Init'
