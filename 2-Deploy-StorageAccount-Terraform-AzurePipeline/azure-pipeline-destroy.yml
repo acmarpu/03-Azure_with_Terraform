@@ -1,13 +1,11 @@
-trigger: none  # Disable CI trigger; use 'main' or your branch name to enable CI
-pr: none  # Disable PR trigger; use 'main' or your branch name to enable PR validation
-  # branches:
-  #   include:
-  #     - main   # or your branch name
+trigger: none
+pr: none
 
 pool:
-  vmImage: 'ubuntu-latest'  # or your custom agent pool
+  vmImage: 'ubuntu-latest'
 
 stages:
+# === Stage 1: Validate ===
 - stage: validate
   jobs:
   - job: validate
@@ -19,7 +17,7 @@ stages:
         terraformVersion: 'latest'
 
     - task: TerraformTaskV3@3
-      displayName: init
+      displayName: 'Terraform Init'
       inputs:
         provider: 'azurerm'
         command: 'init'
@@ -28,30 +26,30 @@ stages:
         backendAzureRmStorageAccountName: 'backendstgtf76587'
         backendAzureRmContainerName: 'tfstate'
         backendazureRmKey: 'deploy.terraform.tfstate'
+        workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline'
 
     - task: TerraformTaskV3@3
-      displayName: validate
+      displayName: 'Terraform Validate'
       inputs:
         provider: 'azurerm'
         command: 'validate'
-        # backendServiceArm: 'azure-spn'
-        # backendAzureRmResourceGroupName: 'terraform-rg'
-        # backendAzureRmStorageAccountName: 'sktfaccount'
-        # backendAzureRmContainerName: 'sktcontainername'
-        # backendazureRmKey: 'terraform.tfstate'
+        workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline'
 
+# === Stage 2: Destroy ===
 - stage: Destroy
   jobs:
   - job: destroy
     continueOnError: false
     steps:
+    - checkout: self
+
     - task: TerraformInstaller@0
       displayName: 'Install Terraform'
       inputs:
         terraformVersion: 'latest'
 
     - task: TerraformTaskV3@3
-      displayName: init
+      displayName: 'Terraform Init'
       inputs:
         provider: 'azurerm'
         command: 'init'
@@ -60,9 +58,10 @@ stages:
         backendAzureRmStorageAccountName: 'backendstgtf76587'
         backendAzureRmContainerName: 'tfstate'
         backendazureRmKey: 'deploy.terraform.tfstate'
+        workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline'
 
     - task: TerraformTaskV3@3
-      displayName: destroy
+      displayName: 'Terraform Destroy'
       inputs:
         provider: 'azurerm'
         command: 'destroy'
@@ -71,5 +70,6 @@ stages:
         backendAzureRmResourceGroupName: 'backendstg-rg'
         backendAzureRmStorageAccountName: 'backendstgtf76587'
         backendAzureRmContainerName: 'tfstate'
-        backendazureRmKey: 'deploy.terraform.tfstate'     
-        args: '-auto-approve'  # Automatically approve the destroy operation
+        backendazureRmKey: 'deploy.terraform.tfstate'
+        workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline'
+        args: '-auto-approve'
