@@ -1,10 +1,11 @@
-trigger:
-  branches:
-    include:
-      - main   # or your branch name
+trigger: none  # Disable CI trigger; use 'main' or your branch name to enable CI
+pr: none  # Disable PR trigger; use 'main' or your branch name to enable PR validation
+  # branches:
+  #   include:
+  #     - main   # or your branch name
 
 pool:
-  vmImage: 'Azure Pipelines'  # or your custom agent pool
+  vmImage: 'ubuntu-latest'  # or your custom agent pool
 
 stages:
 - stage: validate
