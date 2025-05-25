@@ -70,6 +70,7 @@ stages:
               backendAzureRmStorageAccountName: 'backendstgtf76587'
               backendAzureRmContainerName: 'tfstate'
               backendazureRmKey: 'deploy.terraform.tfstate'
+              workingDirectory: 'terraform' 
 
           - task: TerraformTaskV3@3
             displayName: 'Terraform Plan'
@@ -82,6 +83,7 @@ stages:
               backendAzureRmStorageAccountName: 'backendstgtf76587'
               backendAzureRmContainerName: 'tfstate'
               backendazureRmKey: 'deploy.terraform.tfstate'
+              workingDirectory: 'terraform'  
 
           - task: TerraformTaskV3@3
             displayName: 'Terraform Apply'
