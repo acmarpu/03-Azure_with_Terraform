@@ -91,5 +91,6 @@ stages:
               provider: 'azurerm'
               command: 'apply'
               environmentServiceNameAzureRM: 'new-2025-ser-con'
+              workingDirectory: 'storage' 
               # Optional: Set to true for auto-approve
               # args: '-auto-approve'
