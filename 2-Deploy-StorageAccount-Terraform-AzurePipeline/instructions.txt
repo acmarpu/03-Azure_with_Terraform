@@ -1,0 +1,17 @@
+This repo and in this code shows you how to create a Terraform Azure DevOps pipeline that can be leveraged to create Azure Cloud resources 
+
+# Crete Azure Resource Group
+### az group create -l westus -n backend-rg
+
+# Create Service principal and assihan the scope to subscription
+### az ad sp create-for-rbac -n terraform-rg --role contributor --scope /subscriptions/id/rg/name
+
+#create storage account
+### az storage account create --name backendstgrg12 --resource-group backend-rg --location eastus2 --sku Standard_LRS
+
+### az storage account keys list --resource-group backend-rg --account-name backendstgrg12
+
+### az storage container create --name sktcontainer --account-name backendstgrg12  --account-key xxxxxx (which got from above command)
+
+#Create Azure service connection
+# create Azure repo 
