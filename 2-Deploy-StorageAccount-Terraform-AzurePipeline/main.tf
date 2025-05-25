@@ -2,11 +2,9 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=2.46.0"
+      version = "~>3.60.0"
     }
   }
-
-  backend "azurerm" {}  # Required even when values are passed from pipeline
 }
 
 provider "azurerm" {
