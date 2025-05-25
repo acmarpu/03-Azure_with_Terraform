@@ -34,66 +34,42 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'validate'
+        # backendServiceArm: 'azure-spn'
+        # backendAzureRmResourceGroupName: 'terraform-rg'
+        # backendAzureRmStorageAccountName: 'sktfaccount'
+        # backendAzureRmContainerName: 'sktcontainername'
+        # backendazureRmKey: 'terraform.tfstate'
 
-- stage: destroy
+- stage: Destroy
   jobs:
-  - deployment: destroy_storage_account
-    displayName: 'Destroy Storage Account'
+  - job: destroy
     continueOnError: false
-    environment: 'dev'
-    strategy:
-     runOnce:
-       deploy:
-        steps: 
-          - checkout: self
+    steps:
+    - task: TerraformInstaller@0
+      displayName: 'Install Terraform'
+      inputs:
+        terraformVersion: 'latest'
 
-          - task: TerraformInstaller@0
-            displayName: 'Install Terraform'
-            inputs:
-              terraformVersion: '1.6.6'
+    - task: TerraformTaskV3@3
+      displayName: init
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'new-2025-ser-con'
+        backendAzureRmResourceGroupName: 'backendstg-rg'
+        backendAzureRmStorageAccountName: 'backendstgtf76587'
+        backendAzureRmContainerName: 'tfstate'
+        backendazureRmKey: 'deploy.terraform.tfstate'
 
-          - task: TerraformTaskV3@3
-            displayName: 'Terraform Init'
-            inputs:
-              provider: 'azurerm'
-              command: 'init'
-              environmentServiceNameAzureRM: 'new-2025-ser-con'
-              backendServiceArm: 'new-2025-ser-con'
-              backendAzureRmResourceGroupName: 'backendstg-rg'
-              backendAzureRmStorageAccountName: 'backendstgtf76587'
-              backendAzureRmContainerName: 'tfstate'
-              backendazureRmKey: 'deploy.terraform.tfstate'
-              workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline'
-
-          - task: TerraformTaskV3@3
-            displayName: validate
-            inputs:
-              provider: 'azurerm'
-              command: 'validate'
-              workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline'  
-          
-          - task: TerraformTaskV3@3
-            displayName: 'Terraform Plan'
-            inputs:
-              provider: 'azurerm'
-              command: 'plan'
-              environmentServiceNameAzureRM: 'new-2025-ser-con'
-              backendServiceArm: 'new-2025-ser-con'
-              backendAzureRmResourceGroupName: 'backendstg-rg'
-              backendAzureRmStorageAccountName: 'backendstgtf76587'
-              backendAzureRmContainerName: 'tfstate'
-              backendazureRmKey: 'deploy.terraform.tfstate'
-              workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline' 
-
-          - task: TerraformTaskV3@3
-            displayName: 'Terraform Destroy'
-            inputs:
-              provider: 'azurerm'
-              command: 'destroy'
-              environmentServiceNameAzureRM: 'new-2025-ser-con'
-              backendServiceArm: 'new-2025-ser-con'
-              backendAzureRmResourceGroupName: 'backendstg-rg'
-              backendAzureRmStorageAccountName: 'backendstgtf76587'
-              backendAzureRmContainerName: 'tfstate'
-              backendazureRmKey: 'deploy.terraform.tfstate'
-              workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline'
+    - task: TerraformTaskV3@3
+      displayName: destroy
+      inputs:
+        provider: 'azurerm'
+        command: 'destroy'
+        environmentServiceNameAzureRM: 'new-2025-ser-con'
+        backendServiceArm: 'new-2025-ser-con'
+        backendAzureRmResourceGroupName: 'backendstg-rg'
+        backendAzureRmStorageAccountName: 'backendstgtf76587'
+        backendAzureRmContainerName: 'tfstate'
+        backendazureRmKey: 'deploy.terraform.tfstate'     
+        args: '-auto-approve'  # Automatically approve the destroy operation
