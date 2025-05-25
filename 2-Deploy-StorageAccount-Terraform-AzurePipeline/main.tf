@@ -25,7 +25,7 @@ provider "azurerm" {
 # }
 
 #Use this data source to access the configuration of the Azure Resource Manager provider.
-data "azurerm_client_config" "current" {}
+# data "azurerm_client_config" "current" {}
 
 
 # below code for azure storage account details
