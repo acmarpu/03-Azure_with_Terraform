@@ -9,7 +9,7 @@ pool: $(agent_pool)
 
 variables:
   - template: Variables.yaml
-  - group: Secreates  # Loads secure variables like azureSPNUser and azureSPNPassword
+  - group: Secreates  # Imports secrets from the variable group named 'Secreates' in the DevOps Library
   
 steps:
 - script: |

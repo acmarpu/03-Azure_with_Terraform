@@ -18,10 +18,12 @@ variables:
 - name: agent_pool
   value: "Azure Pipelines"
 
-  # The following secrets are stored securely in the Library/Variable Groups in DevOps portal
-  # and referenced in the pipeline (not directly defined here)
-  # - azureSPNUser: Service Principal username
-  # - azureSPNPassword: Service Principal password
+  # The following secrets are stored securely in the Library/Variable Groups in DevOps portal and referenced in the pipeline (not directly defined here)
+  # - name: azureSPNUser: Service Principal username
+  #   value: ""
+
+  # - name: azureSPNPassword: Service Principal password
+  #   value: ""
 
  
  
