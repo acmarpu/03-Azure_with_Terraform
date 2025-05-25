@@ -56,7 +56,7 @@ stages:
             displayName: 'install'
             inputs:
               terraformVersion: 'latest'
-              backendServiceArm: 'azure-spn'
+              backendServiceArm: 'new-2025-ser-con'
 
           - task: TerraformTaskV3@3
             displayName: 'Terraform Init'
@@ -81,6 +81,6 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'apply'
-              environmentServiceNameAzureRM: 'azure-spn'
+              environmentServiceNameAzureRM: 'new-2025-ser-con'
               # Optional: Set to true for auto-approve
               # args: '-auto-approve'
