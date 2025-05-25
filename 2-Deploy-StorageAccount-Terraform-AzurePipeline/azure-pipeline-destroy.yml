@@ -43,8 +43,8 @@ stages:
 
 - stage: destroy
   jobs:
-  - job: destroy_storage_account
-    displayName: 'Destroy Storage Account'
+  - deployment: destroy_storage_account
+    displayName: 'destroy Storage Account'
     continueOnError: false
     environment: 'dev'
     strategy:
