@@ -1,0 +1,30 @@
+variables:
+
+- name: resourceGroupName
+  value: "backendstg-rg"  # Name of the Azure Resource Group
+
+- name: storageAccountName # Must be globally unique
+  value: "backendstgtf76587"
+
+- name: location
+  value: "eastus2"
+
+- name: azureSubscription # Azure service connection name (in DevOps)
+  value: "new-2025-ser-con"
+
+- name: azureTenantId # Azure Tenant ID
+  value: "c5a788c6-0c54-4f1e-b154-adc736498adf"
+
+- name: agent_pool
+  value: "Azure Pipelines"
+
+  # The following secrets are stored securely in the Library/Variable Groups in DevOps portal and referenced in the pipeline (not directly defined here)
+  # - name: azureSPNUser: Service Principal username
+  #   value: ""
+
+  # - name: azureSPNPassword: Service Principal password
+  #   value: ""
+
+ 
+ 
+  

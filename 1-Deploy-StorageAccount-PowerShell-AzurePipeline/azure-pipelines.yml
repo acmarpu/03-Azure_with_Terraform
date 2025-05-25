@@ -1,0 +1,48 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+pool: $(agent_pool)
+
+variables:
+  - template: Variables.yaml
+  - group: Secreates  # Imports secrets from the variable group named 'Secreates' in the DevOps Library
+  
+steps:
+- script: |
+    # Install Azure CLI
+    curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+  displayName: 'Install Azure CLI'
+  
+# Installs the Azure Command-Line Interface (CLI) on the Ubuntu agent.
+- script: |
+    # Install PowerShell Core
+    sudo apt-get install -y powershell
+  displayName: 'Install PowerShell Core'
+
+- script: |
+    # Log in to Azure
+    az login --service-principal -u $(azureSPNUser) -p $(azureSPNPassword) --tenant $(azureTenantId)
+    
+    # Create a new resource group
+    az group create --location $(location) --name $(resourceGroupName)
+    
+    # Create a new storage account
+    az storage account create --name $(storageAccountName) --resource-group $(resourceGroupName) --location $(location) --sku Standard_LRS
+
+    # Storage account Key Generation
+    STORAGE_ACCOUNT_KEY=$(az storage account keys list --resource-group $(resourceGroupName) --account-name $(storageAccountName) --query '[0].value' --output tsv)
+    echo "STORAGE_ACCOUNT_KEY=$STORAGE_ACCOUNT_KEY"
+
+    # Container creation
+    az storage container create --name tfstate --account-name $(storageAccountName)  --account-key $STORAGE_ACCOUNT_KEY
+
+
+  displayName: 'Create Azure Resource Group and Storage Account using Azure CLI'
+  # env:
+  #   azureSPNUser: $(azureSPNUser)
+  #   azureSPNPassword: $(azureSPNPassword)
+  #   azureTenantId: $(azureTenantId)
