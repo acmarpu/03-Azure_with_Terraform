@@ -54,7 +54,7 @@ stages:
           - checkout: self
 
           - task: TerraformInstaller@0
-            displayName: 'install'
+            displayName: 'Install Terraform'
             inputs:
               terraformVersion: 'latest'
               backendServiceArm: 'new-2025-ser-con'
