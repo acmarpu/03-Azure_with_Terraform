@@ -5,15 +5,12 @@ terraform {
       version = "=2.46.0"
     }
   }
+
+  backend "azurerm" {}  # Required even when values are passed from pipeline
 }
 
 provider "azurerm" {
   features {}
-}
-
-
-terraform {
-  backend "azurerm" {}
 }
 
 
