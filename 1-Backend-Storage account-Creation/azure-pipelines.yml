@@ -9,7 +9,7 @@ pool: $(agent_pool)
 
 variables:
   - template: Variables.yaml
-  - group: Secreates
+  - group: Secreates  # Loads secure variables like azureSPNUser and azureSPNPassword
   
 steps:
 - script: |
