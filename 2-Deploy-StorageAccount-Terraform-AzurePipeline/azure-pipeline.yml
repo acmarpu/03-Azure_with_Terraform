@@ -64,8 +64,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
-              workingDirectory: 'terraform' # <-- Add this line if your .tf files are in a subfolder
-              backendServiceArm: 'new-2025-ser-con'
+              environmentServiceNameAzureRM: 'new-2025-ser-con'
               backendAzureRmResourceGroupName: 'backendstg-rg'
               backendAzureRmStorageAccountName: 'backendstgtf76587'
               backendAzureRmContainerName: 'tfstate'
