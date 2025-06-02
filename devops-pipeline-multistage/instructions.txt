@@ -1,0 +1,47 @@
+https://github.com/markti/azure-terraformer/blob/main/episodes/013/infra-machine-images/.azdo-pipelines/terraform-plan.yaml
+https://www.youtube.com/watch?v=dWV4APYdSAg&list=PLsOrrjBMkLaS-ToKpCywPkWsDJyb2pjzo&index=4&ab_channel=AzureTerraformer
+https://www.youtube.com/watch?v=wv81bhcGcMw&list=PLsOrrjBMkLaS-ToKpCywPkWsDJyb2pjzo&index=6&ab_channel=AzureTerraformer
+
+
+--> Create Variable Group for DEV/PROD
+   -> Pipeline
+   -> Library
+   -> Variable Group
+   -> type Group Name abd add below Variables 
+   
+      ARM_SUBSCRIPTION_ID
+      ARM_TENANT_ID
+      ARM_CLIENT_ID
+      ARM_CLIENT_SECRET
+
+
+--> Create Service Principal for DEV/PROD assigan the values to above 
+
+--> Service Principal should be assigan as a Contriabuter role to respective Subscriptions 
+
+--> Create Storage account and Container for backend
+
+--> Create New variable Group for Backend assigan the below values
+   
+   BACKEND_STORAGE_ACCOUNT_NAME
+   BACKEND_RESOURCE_GROUP_NAME
+   BACKEND_STORAGE_CONTAINER_NAME
+
+--> crete pipeline : variables 
+   ApplicationName : in your tfvar file
+   EnvironmentName : dev or prod
+   WorkingDirectory : your terraform codefolder
+
+--> Push code to repo
+
+--> create pipeling and select existing YAML file
+
+--> Link variable is to Pipeline edit-pipeline- variables- link variables
+
+--> if required we can create diffrent folders to run he pipeline pipeline - all - new folder
+
+
+
+  
+   
+
