@@ -92,7 +92,6 @@ stages:
               command: 'apply'
               environmentServiceNameAzureRM: 'new-2025-ser-con'
               workingDirectory: '2-Deploy-StorageAccount-Terraform-AzurePipeline'
-              # Optional: Set to true for auto-approve
-              # args: '-auto-approve'
+              args: '-auto-approve'
 
 
