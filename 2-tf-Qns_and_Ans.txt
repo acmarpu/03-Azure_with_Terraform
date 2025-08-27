@@ -1,4 +1,4 @@
-**Questions and Answers**
+### Questions and Answers
 
 
 👉 Why Terraform is used for?
@@ -95,13 +95,44 @@
 👉 What is boot-disk in G-cloud ?
 -Boot Disk is like the storage file which is required to install and run the hard in any instance. It's just like the EBS in AWS only the naming convention is different.
 
-What is count in terraform?
-What is modules in terraform?
-What is state file? And use of it
-What is data in terraform?
-What is terraform import?
-How can we take reference of one module into another?
-What is provider?
-How can we upgrade terraform provider version?
-Rest questions will depends on your answers
-This is what I generally ask during interviews
+👉 What is count in terraform?
+-It controls how many copies of a resource (or module) Terraform should create.
+-The value of count must be a whole number (0, 1, 2, etc.).
+-You can use it for conditional creation (count = 0 means do not create, count = 1 means create one)
+
+👉 What is modules in terraform?
+-In Terraform, a module is a container for multiple resources that are used together.
+-Every Terraform configuration is itself a module, called the root module.
+-You can create child modules to group resources and call them from the root module.
+-Modules help in organizing, reusing, and structuring Terraform code.
+
+👉 What is state file? And use of it
+-In Terraform, the state file is a file that stores the current state of your infrastructure.
+-By default, the state file is named terraform.tfstate.
+-This file acts as a mapping between your Terraform configuration and the real resources in the cloud.
+-Terraform uses the state file to know what resources exist and their current attributes.
+-Without the state file, Terraform cannot determine what changes are needed during terraform plan or terraform apply.
+
+👉 What is data in terraform?
+-In Terraform, data sources (defined using the data block) allow you to fetch and use information from external sources or existing infrastructure.
+
+👉 What is terraform import?
+-In Terraform, terraform import is a command used to bring existing infrastructure resources under Terraform management.
+-It does not create a new resource; instead, it links an existing resource to your Terraform configuration.
+
+👉 How can we take reference of one module into another?
+-In Terraform, you can reference one module’s output in another module using outputs and input variables.
+-First, the source module (the one you want to reference) must define an output for the value you need.
+-You define an output inside the module using the output block.
+-The root module (where both modules are called) will then use that output value as an input variable for the other module.
+
+👉 What is provider?
+-In Terraform, a provider is a plugin that allows Terraform to communicate with a specific cloud platform, service, or API.
+-Providers are responsible for creating, managing, and deleting resources in that service.
+-Examples of providers include AWS, Azure, Google Cloud, Kubernetes, and many others.
+
+👉 How can we upgrade terraform provider version?
+-Terraform providers have versions, and you can upgrade them to use new features or fixes.
+-The provider version is controlled using the required_providers block inside the terraform configuration.
+-You specify the provider name, its source, and a version constraint in this block.
+
